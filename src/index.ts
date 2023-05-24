@@ -6,7 +6,7 @@ import { getLocalIP as localIP } from '@utils/index';
 const startServer = async () => {
   const app = express();
   const port = process.env.PORT || 8080;
-  const environment = process.env.ENVIRONMENT;
+  const environment = process.env.ENVIRONMENT || 'PROD';
   await loaders(app);
 
   app.listen({ port }, () => {
