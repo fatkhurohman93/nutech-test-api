@@ -1,20 +1,17 @@
 {
   "name": "express-typescript-sequelize-boilerplate",
   "version": "1.0.0",
-  "main": "dist/index.js",
+  "main": "index.js",
   "license": "akbarpathur",
   "scripts": {
-    "start": "node dist/index.js",
-    "build": "rimraf dist && tsc",
-    "ts.check": "tsc --project tsconfig.json",
-    "add-build": "git add dist",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start:dev": "rimraf dist && yarn start:build_nodemon",
+    "start:prod": "rimraf dist && yarn build && node dist/index.js",
+    "start:build_nodemon": "concurrently --names \"build,nodemon\" \"yarn build --watch\" \"yarn nodemon\"",
+    "build": "babel ./src --out-dir dist --extensions \".ts,.tsx,.js,.jsx\"",
+    "nodemon": "wait-on dist/index.js && nodemon dist/index.js",
+    "tsc": "tsc --project tsconfig.json && tscpaths -p tsconfig.json -s ./src -o ./dist",
+    "lint": "tslint -c tslint.json --fix --format verbose  src/**/*.{ts,tsx}"
   },
-  "pre-commit": [
-    "ts.check",
-    "build",
-    "add-build"
-  ],
   "dependencies": {
     "@babel/runtime": "^7.1.5",
     "@types/sequelize": "^4.28.11",
@@ -24,7 +21,6 @@
     "express": "^4.16.4",
     "jsonwebtoken": "^8.5.1",
     "moment": "^2.29.2",
-    "pre-commit": "^1.2.2",
     "sequelize": "^7.0.0-alpha.2",
     "sqlite3": "^5.0.2",
     "winston": "^3.3.3"

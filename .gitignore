@@ -76,5 +76,5 @@ typings/
 .fusebox/
 
 
-# dist
+dist
 yarn.lock
