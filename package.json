@@ -1,7 +1,7 @@
 {
   "name": "express-typescript-sequelize-boilerplate",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "dist/index.js",
   "license": "akbarpathur",
   "scripts": {
     "start": "nodemon src/index.ts",
