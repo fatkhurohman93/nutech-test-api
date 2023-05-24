@@ -10,6 +10,7 @@ import {
   catchError,
   dateLocal,
   sortingData,
+  generateString,
 } from '@utils/index';
 import {
   Products,
@@ -36,7 +37,7 @@ export const create = async (data: Products, whoIsAccess: USERNAME) => {
     const image = data.image
       ? base64ToImage(
           data.image,
-          data.imageName || 'no-name',
+          data.imageName || generateString(8),
           FOLDER_NAME.PRODUCT
         )
       : '';
@@ -75,8 +76,6 @@ export const findAll = async (params: FindAllParams) => {
 
     const result = await products.findAndCountAll({
       where: and(filterByName(name), filterAny({ archived })),
-      limit,
-      offset,
       order: [orderBy],
     });
 
@@ -84,7 +83,7 @@ export const findAll = async (params: FindAllParams) => {
 
     logger.info(`${finalResult.totalItems} ${MODEL_NAME.product}(s) fetched.`);
 
-    return finalResult;
+    return { items: finalResult.items };
   } catch (err) {
     return catchError(err.name, err.message);
   }
@@ -132,7 +131,7 @@ export const update = async (data: Products, whoIsAccess: USERNAME, id: ID) => {
     const image = data.image
       ? base64ToImage(
           data.image,
-          data.imageName || 'no-name',
+          data.imageName || generateString(8),
           FOLDER_NAME.PRODUCT
         )
       : '';
@@ -143,7 +142,7 @@ export const update = async (data: Products, whoIsAccess: USERNAME, id: ID) => {
         sellPrice,
         buyPrice,
         quantity,
-        image,
+        image: image ? image : undefined,
         lastUpdatedBy,
         lastUpdatedTime,
       },

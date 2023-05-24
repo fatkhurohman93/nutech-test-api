@@ -26,6 +26,7 @@ export interface FindAllParams {
 export enum SortingOption {
   name = 'name',
   userName = 'userName',
+  createdTime = 'createdTime',
 }
 
 export enum SortingType {

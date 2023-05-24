@@ -6,6 +6,7 @@ export enum ROUTES {
   public = '../../public',
   auth = '/auth',
   user = '/user',
+  product = '/product',
 }
 
 export enum ROUTES_AUTH {

@@ -10,3 +10,4 @@ export * from './getPagingData';
 export * from './authorities';
 export * from './dateLocal';
 export * from './sorting';
+export * from './randomString';

@@ -10,6 +10,7 @@ import {
   catchError,
   dateLocal,
   sortingData,
+  generateString,
 } from '@utils/index';
 import {
   Users,
@@ -101,7 +102,11 @@ export const update = async (
     const { name, email, flagRoles } = data;
 
     const image = data.image
-      ? base64ToImage(data.image, data.imageName || 'no-name', FOLDER_NAME.USER)
+      ? base64ToImage(
+          data.image,
+          data.imageName || generateString(8),
+          FOLDER_NAME.USER
+        )
       : '';
 
     const result = await users.update(

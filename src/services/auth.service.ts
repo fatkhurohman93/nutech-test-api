@@ -1,7 +1,7 @@
 import { models } from '@models/index';
 import logger from '@loaders/logger';
 import { BadRequest } from '@utils/appError';
-import { base64ToImage, catchError } from '@utils/index';
+import { base64ToImage, catchError, generateString } from '@utils/index';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import secret from '../configs/secret.config';
@@ -29,7 +29,7 @@ export const signUp = async (params: Users, userName?: USERNAME) => {
     const image = params.image
       ? base64ToImage(
           params.image,
-          params.imageName || 'no-name',
+          params.imageName || generateString(8),
           FOLDER_NAME.USER
         )
       : '';
