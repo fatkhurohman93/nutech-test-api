@@ -1,14 +1,11 @@
 "use strict";
 
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
-
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.dateLocal = void 0;
-
 var _moment = _interopRequireDefault(require("moment"));
-
 var dateLocal = function dateLocal(value) {
   var stateDate = value ? new Date(value) : new Date();
   var createdTime = (0, _moment["default"])(stateDate).format();
@@ -26,5 +23,4 @@ var dateLocal = function dateLocal(value) {
     date: date
   };
 };
-
 exports.dateLocal = dateLocal;

@@ -4,9 +4,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.commonColumn = void 0;
-
 var _sequelize = require("sequelize");
-
 var commonColumn = {
   createdTime: {
     type: _sequelize.DataTypes.DATE,
